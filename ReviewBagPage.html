@@ -218,7 +218,25 @@ a{
     display: block;
 }
 
- 
+#btnchek{
+    display: flex;
+  width: 80%;
+  margin: auto;
+  justify-content: space-between;
+}
+ #btn,#btnchek{
+    justify-content: center;
+  align-items: center;
+  width: 95%;
+  color: white;
+  background-color: #1c2938;
+  border-radius: 4px;
+  border: none;
+  height: 40px;
+  letter-spacing:1px;
+  margin:2%;
+ }
+
 
 
 
@@ -413,8 +431,6 @@ a{
 
     <h1>REVIEW YOUR BAG</h1>  
 
-
-
     <div id="first">
         <p class="pc_perks">PC PERKS</p>
         <br>
@@ -424,8 +440,6 @@ a{
        <div id="box"><button id="btn">ADD MEMBERSHIP -$19.95</button></div>
 
     </div>
-
-
 
     <div id="crT"></div>
 
@@ -477,7 +491,11 @@ a{
       
      <p> Save up to $20 the first time you pay with Klarna. </p>
 
+
      <button href="#"  id="btn">SECURE CHECKOUT</button>
+
+     <button id="btnchek">SECURE CHECKOUT</button>
+
      <p id="no"></p>
 
     </div>
@@ -554,9 +572,15 @@ console.log(cartData);
 
 cartData.map(function (elem, index) {
     var box = document.createElement("div");
+
 box.style.justifyContent="center";
     var img = document.createElement("img");
     img.src = elem.img_url;
+
+    box.style.justifyContent="center";
+    var img = document.createElement("img");
+    img.src = elem.image;
+
     img.style.height="60px";
     img.style.width="60px";
     img.style.display="block";
@@ -592,25 +616,37 @@ box.style.justifyContent="center";
   
 
   var total = cartData.reduce(function (sum, elem, index, arr) {
+
     return sum + Number(elem.price);
+
+    return sum+=Number(elem.price.slice(1));
+
   }, 0);
 
   console.log(total);
  
   document.querySelector(
     "#ty "
+
   ).innerText =+total;
+
+  ).innerText ='$'+total;
 
 
   
   var total1 = cartData.reduce(function (sum, elem, index, arr) {
+
     return sum + Number(elem.price);
+
+    return sum+=Number(elem.price.slice(1));
+
   }, 0);
 
   console.log(total1);
  
   document.querySelector(
     "#tj "
+
   ).innerText =total1;
   var total1= +total1;
   var total_price=[];
@@ -622,3 +658,16 @@ box.style.justifyContent="center";
 
   
 </script>
+
+  ).innerText ='$'+total1;
+  var total1= +total1;
+  var total_price=[];
+  total_price.push('$'+total1);
+
+//   copy this localStorage
+  localStorage.setItem("total_price",JSON.stringify('$'+total1))  
+  console.log(total_price)
+
+  
+</script>
+
